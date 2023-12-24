@@ -1,0 +1,41 @@
+-- Create a Database 
+CREATE DATABASE book_store;
+
+-- Create Author table
+CREATE TABLE Author (Aid INT PRIMARY KEY, AuthorName VARCHAR(255), Gender VARCHAR(10));
+
+-- Create Publisher table
+CREATE TABLE Publisher (Pid INT PRIMARY KEY, Pname VARCHAR(255), Country VARCHAR(50) CHECK (Country IN ('India', 'USA', 'UK', 'Germany')));
+
+-- Create Books table
+CREATE TABLE Books (BookId INT PRIMARY KEY, BookName VARCHAR(255), Aid INT, Pid INT, Year INT, FOREIGN KEY (Aid) REFERENCES Author(Aid),
+    FOREIGN KEY (Pid) REFERENCES Publisher(Pid));
+
+-- Insert data into Author table
+INSERT INTO Author (Aid, AuthorName, Gender) VALUES
+(101, 'Mr. Amitava Das', 'Male'),
+(102, 'Ms. Sarah Smith', 'Female'),
+(103, 'Prof. Amit Mukharjee', 'Male'),
+(104, 'Kalyani Haldar', 'Female'),
+(105, 'Nilanjana Pandey', 'Female');
+
+-- Insert data into Publisher table
+INSERT INTO Publisher (Pid, Pname, Country) VALUES
+(1, 'Publisher1', 'India'),
+(2, 'Publisher2', 'USA'),
+(3, 'Publisher3', 'UK'),
+(4, 'Marie Publisher', 'Germany');
+
+
+-- Insert data into Books table
+INSERT INTO Books (BookId, BookName, Aid, Pid, Year) VALUES
+(1000, 'Book1', 101, 1, 2012),
+(1001, 'Book2', 102, 2, 2015),
+(1002, 'Book3', 102, 3, 2018),
+(1003, 'Book4', 103, 1, 2021),
+(1004, 'BookNull', 101, 1, 2013),
+(1005, 'BookVoid', 101, 1, 2016),
+(1006, 'Book007', 104, 4, 2014),
+(1007, 'Book5', 102, 3, 2018),
+(1008, 'Book6', 104, 4, 2018),
+(1009, 'Book7', 104, 4, 2021);
